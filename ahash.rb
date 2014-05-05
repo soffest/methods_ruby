@@ -1,18 +1,22 @@
 class Ahash
   Error = Class.new(StandardError)
 
-  def initialize(array)
+  def initialize(array = [])
     @array = array
   end
 
   def [](key)
-    index = self.keys.index(key)
+    index = self.keys.index(key) unless @array.empty?
     value = @array[index][1] if index
   end
 
   def []=(key, value)
-    index = self.keys.index(key)
-    @array[index][1] = value
+    index = self.keys.index(key) unless @array.empty?
+    if index
+      @array[index][1] = value
+    else
+      @array[@array.size] = [key,value]
+    end
   end
 
   def keys
@@ -24,16 +28,15 @@ class Ahash
   end
 
   def each
-    i=0
-    loop do
-      yield @array[i]
-      i += 1
-      break if i == @array.size
+    unless @array.empty?
+      @array.size.times do |i|
+        yield @array[i]
+      end
     end
   end
 
   def delete(key)
-    index = self.keys.index(key)
-    @array.delete_at(indexa[]) if index
+    index = self.keys.index(key) unless @array.empty?
+    @array.delete_at(index) if index
   end
 end

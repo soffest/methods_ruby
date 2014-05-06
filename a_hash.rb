@@ -6,8 +6,8 @@
 # Based on imbedded class Array
 # @author [soffest]
 # 
-class Ahash
-  
+class AHash
+
   Error = Class.new(StandardError)
 
   def initialize(array = [])

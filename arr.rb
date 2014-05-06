@@ -1,3 +1,10 @@
+
+# 
+# 
+# Arr - integer-indexed collections (as array)
+# Based on imbedded class Enumerator 
+# @author [soffest]
+# 
 class Arr
   Error = Class.new(StandardError)
   
@@ -7,6 +14,11 @@ class Arr
     @enum = enum
   end
 
+  # 
+  # Returns the element at index or nil if index out of range
+  # @param  index [integer] index number
+  # Indexing starts at 0
+  # 
   def [](index)
     check_index_type(index)
     @enum.rewind
@@ -18,6 +30,9 @@ class Arr
     end
   end
 
+  # 
+  # Calls the given block once for each element
+  # 
   def each
     @enum.rewind
     loop do
@@ -26,6 +41,10 @@ class Arr
     end
   end
 
+  # 
+  # Returns size of array
+  # 
+  # @return [integer] returns 0 for empty array
   def size
     i = 0
     loop do
@@ -38,7 +57,10 @@ class Arr
     i
   end
 
-  def search (elem)
+  # 
+  # Searches index of an element with value == elem
+  # 
+  def search(elem)
     @enum.rewind
     i = 0
     index = nil
@@ -50,12 +72,21 @@ class Arr
     index
   end
 
+  # 
+  # Raises error if type of index differs from integer
+  # @param  index [type] [description]
+  # 
+  # @return [type] [description]
   def check_index_type(index)
     unless index.is_a? Integer 
       raise TypeError, "no implicit conversion of #{index.class} into Integer"
     end
   end
 
+
+  # 
+  # Stops iteration if it reached last element of enumerator
+  # 
   def rescue_stop_iteration
     yield
     rescue StopIteration 

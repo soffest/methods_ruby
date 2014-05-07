@@ -1,3 +1,10 @@
+
+
+# 
+# some array meth
+# 
+# @author [soffest]
+# 
 class MyArray < Array
 
   def size 

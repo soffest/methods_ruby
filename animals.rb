@@ -1,5 +1,18 @@
+
+# 
+# Class Animal is a parent class for all
+# classes that represent each animal
+# 
+# @author [soffest]
+# 
 class Animal
 
+  # 
+  # Due to callback invoked whenever a subclass
+  # is created class animal dynamically defines class method
+  # for each subclass depending on it`s index number @n
+  # @param  sub [class] subclass
+  # 
   def self.inherited(sub)
     @n = @n ? @n+1 : 1
     m_name = if @n % 2 > 0
@@ -14,11 +27,17 @@ class Animal
     }
   end
 
+  # 
+  # Returns total number of subclasses
+  # 
   def self.has_children
     puts "class #{self} has #{@n} children"
   end
 end
 
+# 
+# Some subclasses for class Animal
+# 
 class Bear < Animal
   
   def eat(food)
